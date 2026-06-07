@@ -1,14 +1,19 @@
-# CVOptima - CV Builder IA pour le marché français
+# CVOptima - ATS Optimization Platform (FR)
 
-CV builder IA optimisé pour les ATS français. Génère des CV et lettres de motivation en 2 minutes, optimisés pour CEGID, Workday FR, SAP SuccessFactors.
+**Mission:** Help French job seekers beat ATS (Workday, CEGID, Lucca, SAP) and get their CVs in front of human eyes.
+
+**Phase 1:** Generate ATS-optimized CVs from job descriptions (€9.99 one-shot)
+**Phase 2:** Score + edit existing CVs against 6 ATS profiles (€7.99/mth recurring)
 
 ## Stack
 
 - **Frontend:** Next.js 14 + React + TypeScript
 - **Styling:** Tailwind CSS
-- **AI:** Anthropic Claude API
+- **AI:** Anthropic Claude API (generation + scoring)
+- **PDF Export:** pdfkit (critical path item)
 - **Payments:** Stripe
 - **Deployment:** Vercel
+- **ATS Reference:** `sunnypatell/ats-screener` (scoring logic adapted)
 
 ## Démarrage rapide
 
@@ -76,22 +81,46 @@ lib/
 - ✓ Pas de design complexe
 - ✓ Lettres formelles selon conventions FR
 
-## Roadmap MVP
+## Phase 1 Roadmap (Weeks 1-4)
 
-- [ ] Intégration PDF generation
-- [ ] Email avec documents (post-paiement)
-- [ ] Stockage des CVs générés
-- [ ] Templates personnalisables
-- [ ] Analytics Stripe + Claude
+- [x] Project init + git repo
+- [ ] Landing page (week 1)
+- [ ] Claude generation prompt (week 1)
+- [ ] Keyword extraction from job description (week 2)
+- [ ] **PDF export** (weeks 3-4) ← CRITICAL PATH
+- [ ] Stripe integration (week 2)
+- [ ] Deploy + QA (week 4)
+- [ ] Phase 1 launch
 
-## Coûts estimés
+## Phase 2 Roadmap (Weeks 5-12)
 
-- **Claude API:** ~0.03€ par CV généré
-- **Stripe:** 2.9% + 0.30€ par transaction
-- **Hosting:** ~5-10€/mois (Vercel)
-- **Marge nette:** ~14€ par vente
+- [ ] PDF/DOCX parser (client-side)
+- [ ] Scoring engine (6 ATS profiles)
+- [ ] Edit UI + real-time scoring
+- [ ] Upgrade to €7.99/mth paywall
+- [ ] Phase 2 launch
 
-À 100 ventes/mois = ~1400€ revenu, ~800€ profit net.
+## Unit Economics
+
+```
+Revenue (Phase 1):           €9.99
+├─ Claude API cost:          -€0.25
+├─ Stripe fee (2.9% + €0.30): -€0.60
+└─ Infrastructure:           €0
+─────────────────────────
+Gross profit:                €9.14 (91.5% margin)
+```
+
+**Scaling:** 100 sales/month = €900 gross profit, $0 infrastructure.
+
+## Key Decisions
+
+- **Pricing:** €9.99 (not €4.99) — signals quality + French ATS specialization
+- **Timeline:** 4 weeks Phase 1, not 2 — PDF export is the blocker
+- **Cost model:** €0.15-0.25/session, sustainable at €9.99+ pricing
+- **Hybrid path:** Generation first (fast validation) → Scoring second (recurring revenue)
+
+See `STRATEGY.md` for full business model + roadmap details.
 
 ## License
 
